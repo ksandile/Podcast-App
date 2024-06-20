@@ -1,0 +1,135 @@
+.show-container {
+    padding: 20px;
+  }
+  
+  .back-button {
+    text-decoration: none;
+    color: #007bff;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .show-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .show-title {
+    font-size: 2.5rem;
+    margin: 10px 0;
+  }
+  
+  .show-image {
+    max-width: 200px;
+    height: auto;
+    margin: 10px 0;
+  }
+  
+  .show-description {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .show-seasons-count {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .season-selector {
+    margin: 20px 0;
+  }
+  
+  .seasons-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .seasons-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .season-item {
+    margin-bottom: 10px;
+  }
+  
+  .season-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .season-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .season-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .season-title {
+    margin: 0;
+  }
+  
+  .episode-dropdown-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    margin-top: 10px;
+  }
+  
+  .episodes-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .episode-item {
+    margin-bottom: 10px;
+  }
+  
+  .episode-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  .episode-title {
+    margin: 0;
+    flex: 1;
+  }
+  
+  .episode-duration {
+    margin: 0 10px;
+  }
+  
+  .favorite-icon {
+    cursor: pointer;
+  }
+  
+  .heart-solid {
+    color: red;
+  }
+  
+  .heart-regular {
+    color: gray;
+  }
+  
+  .audio-player {
+    display: flex;
+    align-items: center;
+  }
+  
+  .audio-progress {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+  

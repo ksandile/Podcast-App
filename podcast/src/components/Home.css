@@ -1,0 +1,115 @@
+.home {
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .podcast-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .podcast-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 20% 10% / 10% 30%;
+    overflow: hidden;
+    transition: background-color 0.3s, border-color 0.3s;
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: 300px;
+  }
+  
+  .podcast-item:hover {
+    border-color: red;
+  }
+  
+  .podcast-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .podcast-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .podcast-details {
+    padding: 10px;
+  }
+  
+  .podcast-details h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  .podcast-details p {
+    margin: 0;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .play-button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .play-button:hover {
+    background-color: #218838;
+  }
+  
+  .favorite-icon {
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 1000;
+  }
+  
+  .favorite-icon.favorite {
+    color: #ff0000;
+  }
+  
+  .favorite-icon:hover {
+    color: #ff0000;
+  }
+  
+  /* Additional styles for the dropdowns */
+  .filter-dropdown {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-dropdown select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  
+  .filter-dropdown select:hover {
+    border-color: #999;
+  }
+  
+  .filter-dropdown select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  

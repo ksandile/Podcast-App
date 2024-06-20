@@ -1,0 +1,62 @@
+/* File: components/Header.css */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #3b3535;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 70px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #f0e7e7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  
+  .nav-links a:hover {
+    color: #ccc;
+    background-color: #413c3c;
+  }
+  
+  .search-container {
+    position: relative;
+  }
+  
+  .search-input {
+    padding: 8px 12px; 
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 300px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
+  }
+  
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
