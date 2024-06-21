@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchShow } from '../services/podcastService.js';
 import AudioPlayer from './AudioPlayer';
+import PersistentAudioPlayer from './PersistentAudioPlayer'; // Added new import
 import './Show.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
@@ -36,8 +37,9 @@ const Show = () => {
     setPlayingEpisode(null);
   };
 
-  const playEpisode = (episodeId) => {
-    setPlayingEpisode(episodeId);
+  // Updated playEpisode function to pass season image to PersistentAudioPlayer
+  const playEpisode = (episode, seasonNumber, seasonImage) => {
+    setPlayingEpisode({ ...episode, seasonNumber, seasonImage });
   };
 
   const pauseEpisode = () => {
@@ -48,7 +50,14 @@ const Show = () => {
     if (isFavorite(episode.id)) {
       removeFavorite(episode.id);
     } else {
-      addFavorite({ ...episode, seasonNumber, showTitle: show.title, showId });
+      const addedDate = new Date().toISOString();
+      addFavorite({
+        ...episode,
+        seasonNumber,
+        showTitle: show.title,
+        showId,
+        addedDate,
+      });
     }
   };
 
@@ -77,11 +86,20 @@ const Show = () => {
           {show.seasons.map((season) => (
             <li key={season.number} className="season-item">
               <div className="season-header">
-                <img src={season.image} alt={`Season ${season.number}`} className="season-image" />
+                <img
+                  src={season.image}
+                  alt={`Season ${season.number}`}
+                  className="season-image"
+                />
                 <div className="season-info">
                   <h3 className="season-title">Season {season.number}</h3>
-                  <button onClick={() => handleEpisodeDropdown(season.number)} className="episode-dropdown-button">
-                    {openDropdown === season.number ? 'Hide Episodes' : 'Show Episodes'}
+                  <button
+                    onClick={() => handleEpisodeDropdown(season.number)}
+                    className="episode-dropdown-button"
+                  >
+                    {openDropdown === season.number
+                      ? 'Hide Episodes'
+                      : 'Show Episodes'}
                   </button>
                 </div>
               </div>
@@ -91,21 +109,43 @@ const Show = () => {
                     {season.episodes.map((episode) => (
                       <li key={episode.id} className="episode-item">
                         <div className="episode-details">
-                          <h3 className="episode-title">Episode {episode.id}: {episode.title}</h3>
-                          <p className="episode-duration">Duration: {episode.duration}</p>
-                          <div className="favorite-icon" onClick={() => toggleFavorite(episode, season.number)}>
+                          <h3 className="episode-title">
+                            Episode {episode.id}: {episode.title}
+                          </h3>
+                          <p className="episode-duration">
+                            Duration: {episode.duration}
+                          </p>
+                          <div
+                            className="favorite-icon"
+                            onClick={() =>
+                              toggleFavorite(episode, season.number)
+                            }
+                          >
                             <FontAwesomeIcon
-                              icon={isFavorite(episode.id) ? solidHeart : regularHeart}
-                              className={isFavorite(episode.id) ? 'heart-solid' : 'heart-regular'}
+                              icon={
+                                isFavorite(episode.id)
+                                  ? solidHeart
+                                  : regularHeart
+                              }
+                              className={
+                                isFavorite(episode.id)
+                                  ? 'heart-solid'
+                                  : 'heart-regular'
+                              }
                             />
                           </div>
-                          <AudioPlayer
-                            key={episode.id}
-                            src={episode.audioSrc}
-                            isPlaying={playingEpisode === episode.id}
-                            onPlay={() => playEpisode(episode.id)}
-                            onPause={pauseEpisode}
-                          />
+                          <button
+                            onClick={() =>
+                              playEpisode(
+                                episode,
+                                season.number,
+                                season.image
+                              )
+                            }
+                            className="play-button" // Added play button
+                          >
+                            Play Episode
+                          </button>
                         </div>
                       </li>
                     ))}
@@ -116,6 +156,14 @@ const Show = () => {
           ))}
         </ul>
       </div>
+
+      {playingEpisode && (
+        <PersistentAudioPlayer
+          episode={playingEpisode}
+          seasonImage={playingEpisode.seasonImage}
+          onPause={pauseEpisode}
+        />
+      )}
     </div>
   );
 };

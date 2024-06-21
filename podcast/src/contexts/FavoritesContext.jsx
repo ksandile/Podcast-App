@@ -1,9 +1,16 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState({});
+  const [favorites, setFavorites] = useState(() => {
+    const savedFavorites = localStorage.getItem('favorites');
+    return savedFavorites ? JSON.parse(savedFavorites) : {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (episode) => {
     setFavorites((prevFavorites) => ({
@@ -21,8 +28,13 @@ export const FavoritesProvider = ({ children }) => {
     return !!favorites[episodeId];
   };
 
+  const resetFavorites = () => {
+    setFavorites({});
+    localStorage.removeItem('favorites');
+  };
+
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite, resetFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );

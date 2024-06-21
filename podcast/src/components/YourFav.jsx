@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFavorites } from '../contexts/FavoritesContext';
-import AudioPlayer from './AudioPlayer'; // Import the AudioPlayer component
+import AudioPlayer from './AudioPlayer';
 import './YourFav.css';
 
 const YourFav = () => {
-  const { favorites, removeFavorite } = useFavorites();
-  const [playingEpisode, setPlayingEpisode] = useState(null); // State to manage the currently playing episode
+  const { favorites, removeFavorite, resetFavorites } = useFavorites();
+  const [playingEpisode, setPlayingEpisode] = useState(null);
 
-  const favoriteEpisodes = Object.values(favorites); // Convert the favorites object to an array
+  const favoriteEpisodes = Object.values(favorites);
 
   const playEpisode = (episodeId) => {
     setPlayingEpisode(episodeId);
@@ -25,12 +25,14 @@ const YourFav = () => {
   return (
     <div className="favorites-container">
       <h1>Your Favorite Episodes</h1>
+      <button onClick={resetFavorites}>Reset All</button>
       <ul className="favorites-list">
         {favoriteEpisodes.map((episode) => (
           <li key={episode.id} className="favorite-item">
             <h3>{episode.title}</h3>
             <p>Show: <Link to={`/show/${episode.showId}`}>{episode.showTitle}</Link></p>
             <p>Season: {episode.seasonNumber}</p>
+            <p>Added on: {new Date(episode.addedDate).toLocaleDateString()}</p>
             <button onClick={() => removeFavorite(episode.id)}>Remove from Favorites</button>
             <AudioPlayer
               key={episode.id}

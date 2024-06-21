@@ -13,28 +13,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .show-title {
+}
+
+.show-title {
     font-size: 2.5rem;
     margin: 10px 0;
-  }
-  
-  .show-image {
-    max-width: 200px;
-    height: auto;
+}
+
+.show-image {
+    max-width: 100%;
+    height: 400px;
     margin: 10px 0;
-  }
-  
-  .show-description {
+}
+
+.show-description {
     font-size: 1.2rem;
     margin: 10px 0;
-  }
-  
-  .show-seasons-count {
+}
+
+.show-seasons-count {
     font-size: 1.2rem;
     margin: 10px 0;
-  }
+}
+
   
   .season-selector {
     margin: 20px 0;
@@ -132,4 +133,14 @@
     margin-left: 10px;
     font-size: 1rem;
   }
+
+  @media (max-width: 768px) {
+    .show-container {
+        padding: 10px;
+    }
+    .season-item {
+      flex: 1 1 calc(33.333% - 10px);
+    }
+}
+
   

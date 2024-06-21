@@ -1,0 +1,23 @@
+.persistent-audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #c73838;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .persistent-audio-player .season-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .persistent-audio-player .episode-info {
+    flex-grow: 1;
+  }
